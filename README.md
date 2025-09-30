@@ -12,4 +12,4 @@ Funcionalidades:
 🧮 Resultados Consolidados: exibe totais da carteira, quantidade de ações compradas, valor inicial e final, lucro, e dividendos.
 🔄 Atualização Automática de Dados: utiliza dados históricos de fechamento e dividendos obtidos via yfinance para manter as informações atualizadas.
 
-Desenvolvido com base em um curso no youtube [youtube ](https://www.youtube.com/watch?v=NsjA-c8596k) do canal Hashtag Programação.
+Desenvolvido com base em um curso no [youtube ](https://www.youtube.com/watch?v=NsjA-c8596k) do canal Hashtag Programação.
