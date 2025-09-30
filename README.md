@@ -13,3 +13,5 @@ Funcionalidades:
 🔄 Atualização Automática de Dados: utiliza dados históricos de fechamento e dividendos obtidos via yfinance para manter as informações atualizadas.
 
 Desenvolvido com base em um curso no [youtube ](https://www.youtube.com/watch?v=NsjA-c8596k) do canal Hashtag Programação.
+
+O simulador de ações foi publicado no Streamlit e está disponível em: https://simuladoracao.streamlit.app/
