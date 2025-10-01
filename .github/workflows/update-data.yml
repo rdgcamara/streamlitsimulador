@@ -1,5 +1,9 @@
 name: Atualizar dados de ativos diariamente
 
+# dá permissão de escrita no conteúdo para o GITHUB_TOKEN
+permissions:
+  contents: write
+
 on:
   schedule:
     # 03:00 UTC => 00:00 BRT
@@ -32,13 +36,20 @@ jobs:
           python buscar_ativos.py
 
       - name: Commit e push se houver mudanças
+        env:
+          # garante que o token esteja disponível no ambiente do step
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # garantir que o push use explicitamente o token (evita problemas com forks/configs)
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+
           if ! git diff --quiet; then
-            git add dados_close.parquet dados_dividendos.parquet
-            git commit -m "Atualiza dados_close e dados_dividendos automaticamente [ci skip]"
-            git push
+            git add dados_close.parquet dados_dividendos.parquet || true
+            git commit -m "Atualiza dados_close e dados_dividendos automaticamente [ci skip]" || echo "Sem alterações para commitar"
+            git push origin HEAD:${{ github.ref_name }}
           else
             echo "Nenhuma alteração detectada."
           fi
